@@ -18,9 +18,9 @@ export default function WishlistCard({
   } = item;
 
   const imageUrl =
-  product_image_url?.startsWith("//")
-    ? `https:${product_image_url}`
-    : product_image_url || null;
+    product_image_url?.startsWith("//")
+      ? `https:${product_image_url}`
+      : product_image_url || null;
 
   return (
     <div className="wishlist-card">
@@ -67,46 +67,48 @@ export default function WishlistCard({
             {product_title || "Unnamed Product"}
           </h3>
         </a>
+<p className="wishlist-card-price">
+        {product_price
+          ? `৳${(Number(product_price) / 100).toLocaleString("en-BD", {
+            minimumFractionDigits: 2,
+            maximumFractionDigits: 2,
+          })}`
+          : "Price unavailable"}
+      </p>
 
-        <p className="wishlist-card-price">
-          {product_price
-            ? `$${Number(product_price).toFixed(2)}`
-            : "Price unavailable"}
-        </p>
+      <div className="wishlist-card-actions">
+        <button
+          className="btn btn-dark"
+          onClick={() => onAddToCart(variant_id || product_id)}
+          style={{ fontSize: "0.85rem", padding: "8px 16px" }}
+        >
+          🛒 Add to Cart
+        </button>
 
-        <div className="wishlist-card-actions">
-          <button
-            className="btn btn-dark"
-            onClick={() => onAddToCart(variant_id || product_id)}
-            style={{ fontSize: "0.85rem", padding: "8px 16px" }}
-          >
-            🛒 Add to Cart
-          </button>
+        <a
+          href={product_url || "#"}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="btn btn-outline"
+          style={{ fontSize: "0.85rem", padding: "8px 16px" }}
+        >
+          👁️ View
+        </a>
 
-          <a
-            href={product_url || "#"}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="btn btn-outline"
-            style={{ fontSize: "0.85rem", padding: "8px 16px" }}
-          >
-            👁️ View
-          </a>
-
-          <button
-            className="btn btn-outline"
-            onClick={() => onRemove(product_id)}
-            style={{
-              fontSize: "0.85rem",
-              padding: "8px 16px",
-              color: "#e11d48",
-              borderColor: "#fecdd3",
-            }}
-          >
-            ❌ Remove
-          </button>
-        </div>
+        <button
+          className="btn btn-outline"
+          onClick={() => onRemove(product_id)}
+          style={{
+            fontSize: "0.85rem",
+            padding: "8px 16px",
+            color: "#e11d48",
+            borderColor: "#fecdd3",
+          }}
+        >
+          ❌ Remove
+        </button>
       </div>
     </div>
+    </div >
   );
 }
