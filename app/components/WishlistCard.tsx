@@ -69,11 +69,11 @@ export default function WishlistCard({
         </a>
 <p className="wishlist-card-price">
         {product_price
-          ? `৳${(Number(product_price) / 100).toLocaleString("en-BD", {
-            minimumFractionDigits: 2,
-            maximumFractionDigits: 2,
-          })}`
-          : "Price unavailable"}
+  ? `৳${Number(product_price).toLocaleString("en-BD", {
+      minimumFractionDigits: 2,
+      maximumFractionDigits: 2,
+    })}`
+  : "Price unavailable"}
       </p>
 
       <div className="wishlist-card-actions">
