@@ -68,7 +68,7 @@ export default function WishlistCard({
           </h3>
         </a>
 <p className="wishlist-card-price">
-        {product_price
+       {product_price
   ? `৳${Number(product_price).toLocaleString("en-BD", {
       minimumFractionDigits: 2,
       maximumFractionDigits: 2,
