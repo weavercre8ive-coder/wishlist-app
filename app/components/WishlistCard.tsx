@@ -18,15 +18,14 @@ export default function WishlistCard({
   } = item;
 
   const imageUrl = product_image_url
-    ? product_image_url.startsWith('//')
+    ? product_image_url.startsWith("//")
       ? `https:${product_image_url}`
       : product_image_url
     : null;
 
   return (
     <div className="wishlist-card">
-
-      
+      <a
         href={product_url || "#"}
         target="_blank"
         rel="noopener noreferrer"
@@ -58,8 +57,7 @@ export default function WishlistCard({
       </a>
 
       <div className="wishlist-card-info">
-
-        
+        <a
           href={product_url || "#"}
           target="_blank"
           rel="noopener noreferrer"
@@ -77,7 +75,6 @@ export default function WishlistCard({
         </p>
 
         <div className="wishlist-card-actions">
-
           <button
             className="btn btn-dark"
             onClick={() => onAddToCart(variant_id || product_id)}
@@ -86,7 +83,7 @@ export default function WishlistCard({
             🛒 Add to Cart
           </button>
 
-          
+          <a
             href={product_url || "#"}
             target="_blank"
             rel="noopener noreferrer"
@@ -108,7 +105,6 @@ export default function WishlistCard({
           >
             ❌ Remove
           </button>
-
         </div>
       </div>
     </div>
