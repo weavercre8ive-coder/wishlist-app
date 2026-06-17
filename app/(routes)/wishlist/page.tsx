@@ -58,6 +58,11 @@ export default function WishlistPage() {
   }, []);
 
   useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    const urlToken = params.get('token');
+    if (urlToken) {
+      localStorage.setItem('wl_token', urlToken);
+    }
     fetchWishlist();
   }, [fetchWishlist]);
 
