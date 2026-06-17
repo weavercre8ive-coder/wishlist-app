@@ -61,7 +61,7 @@ export default function WishlistPage() {
     const params = new URLSearchParams(window.location.search);
     const urlToken = params.get('token');
     if (urlToken) {
-      localStorage.setItem('wl_token', urlToken);
+      localStorage.setItem('wishlist_token', urlToken);
     }
     fetchWishlist();
   }, [fetchWishlist]);
