@@ -20,9 +20,6 @@ export default function WishlistPage() {
     setTimeout(() => setToast(null), 3000);
   };
 
-  // ============================================
-  // Fetch wishlist
-  // ============================================
   const fetchWishlist = useCallback(async () => {
     try {
       setLoading(true);
@@ -44,7 +41,7 @@ export default function WishlistPage() {
 
       const data = await response.json();
 
-      if (data.success) {
+      if (data.items) {
         setItems(data.items || []);
       } else {
         setError("Failed to load wishlist");
@@ -66,9 +63,6 @@ export default function WishlistPage() {
     fetchWishlist();
   }, [fetchWishlist]);
 
-  // ============================================
-  // Remove item
-  // ============================================
   const handleRemove = async (productId: string) => {
     try {
       const token = localStorage.getItem(
@@ -93,7 +87,6 @@ export default function WishlistPage() {
         );
         showToast("❌ Removed from wishlist");
 
-        // Update floating button
         window.dispatchEvent(new Event("wishlistUpdated"));
       }
     } catch (err) {
@@ -102,9 +95,6 @@ export default function WishlistPage() {
     }
   };
 
-  // ============================================
-  // Add to Cart
-  // ============================================
   const handleAddToCart = (variantId: string) => {
     const storeUrl = process.env.NEXT_PUBLIC_SHOPIFY_STORE_URL;
     if (storeUrl) {
