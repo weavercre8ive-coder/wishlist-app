@@ -3,21 +3,13 @@ const nextConfig = {
   reactStrictMode: true,
 
   images: {
-    remotePatterns: [
-      {
-        protocol: "https",
-        hostname: "cdn.shopify.com",
-        port: "",
-        pathname: "/**",
-      },
-      {
-        protocol: "https",
-        hostname: "**.myshopify.com",
-        port: "",
-        pathname: "/**",
-      },
-    ],
-  },
+  remotePatterns: [
+    {
+      protocol: "https",
+      hostname: "**",
+    },
+  ],
+},
 
   async headers() {
     return [

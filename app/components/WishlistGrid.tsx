@@ -66,7 +66,7 @@ export default function WishlistGrid({
 
         <a
           href={
-            process.env.NEXT_PUBLIC_SHOPIFY_STORE_URL || "#"
+            process.env.NEXT_PUBLIC_SHOPIFY_STORE_URL || "https://weavercre8ive.com/collections/all"
           }
           style={{
             fontSize: "0.85rem",

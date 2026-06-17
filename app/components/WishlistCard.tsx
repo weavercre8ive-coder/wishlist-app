@@ -17,11 +17,10 @@ export default function WishlistCard({
     variant_id,
   } = item;
 
-  const imageUrl = product_image_url
-    ? product_image_url.startsWith("//")
-      ? `https:${product_image_url}`
-      : product_image_url
-    : null;
+  const imageUrl =
+  product_image_url?.startsWith("//")
+    ? `https:${product_image_url}`
+    : product_image_url || null;
 
   return (
     <div className="wishlist-card">
@@ -38,6 +37,7 @@ export default function WishlistCard({
             width={100}
             height={100}
             className="wishlist-card-image"
+            unoptimized
             style={{ cursor: "pointer" }}
           />
         ) : (
