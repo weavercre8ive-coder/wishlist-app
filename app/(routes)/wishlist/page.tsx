@@ -6,6 +6,8 @@ import { STORAGE_KEYS, API_ENDPOINTS } from "@/lib/constants";
 import WishlistGrid from "@/app/components/WishlistGrid";
 import FloatingWishlistBtn from "@/app/components/FloatingWishlistBtn";
 
+const STORE_URL = "https://weavercre8ive.com";
+
 export default function WishlistPage() {
   const [items, setItems] = useState<WishlistItem[]>([]);
   const [loading, setLoading] = useState(true);
@@ -96,13 +98,10 @@ export default function WishlistPage() {
   };
 
   const handleAddToCart = (variantId: string) => {
-    const storeUrl = process.env.NEXT_PUBLIC_SHOPIFY_STORE_URL;
-    if (storeUrl) {
-      window.open(
-        `${storeUrl}/cart/add?id=${variantId}&quantity=1`,
-        "_blank"
-      );
-    }
+    window.open(
+      `${STORE_URL}/cart/add?id=${variantId}&quantity=1`,
+      "_blank"
+    );
     showToast("🛒 Added to cart!");
   };
 
@@ -118,7 +117,6 @@ export default function WishlistPage() {
             <h1 className="wishlist-title">❤️ My Wishlist</h1>
           </div>
 
-          {/* Skeleton */}
           {[1, 2, 3].map((i) => (
             <div
               key={i}
@@ -211,7 +209,6 @@ export default function WishlistPage() {
     <div className="wishlist-page">
       <div className="wishlist-container">
 
-        {/* Header */}
         <div className="wishlist-header">
           <h1 className="wishlist-title">❤️ My Wishlist</h1>
           <p className="wishlist-count-label">
@@ -220,11 +217,8 @@ export default function WishlistPage() {
           </p>
         </div>
 
-        {/* Back to Store */}
         <a
-          href={
-            process.env.NEXT_PUBLIC_SHOPIFY_STORE_URL || "#"
-          }
+          href={STORE_URL}
           className="btn btn-outline"
           style={{
             marginBottom: 24,
@@ -234,7 +228,6 @@ export default function WishlistPage() {
           ← Back to Store
         </a>
 
-        {/* Wishlist Grid */}
         <WishlistGrid
           items={items}
           onRemove={handleRemove}
@@ -243,10 +236,8 @@ export default function WishlistPage() {
 
       </div>
 
-      {/* Floating Button */}
       <FloatingWishlistBtn count={items.length} />
 
-      {/* Toast */}
       {toast && (
         <div className="toast">{toast}</div>
       )}

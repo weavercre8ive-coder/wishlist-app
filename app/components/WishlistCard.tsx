@@ -17,22 +17,24 @@ export default function WishlistCard({
     variant_id,
   } = item;
 
-  // ============================================
-  // RENDER
-  // ============================================
+  const imageUrl = product_image_url
+    ? product_image_url.startsWith('//')
+      ? `https:${product_image_url}`
+      : product_image_url
+    : null;
+
   return (
     <div className="wishlist-card">
 
-      {/* Product Image */}
-      <a
+      
         href={product_url || "#"}
         target="_blank"
         rel="noopener noreferrer"
         style={{ flexShrink: 0 }}
       >
-        {product_image_url ? (
+        {imageUrl ? (
           <Image
-            src={product_image_url}
+            src={imageUrl}
             alt={product_title || "Product"}
             width={100}
             height={100}
@@ -40,7 +42,6 @@ export default function WishlistCard({
             style={{ cursor: "pointer" }}
           />
         ) : (
-          // Fallback if no image
           <div
             className="wishlist-card-image"
             style={{
@@ -56,11 +57,9 @@ export default function WishlistCard({
         )}
       </a>
 
-      {/* Product Info */}
       <div className="wishlist-card-info">
 
-        {/* Title */}
-        <a
+        
           href={product_url || "#"}
           target="_blank"
           rel="noopener noreferrer"
@@ -71,29 +70,23 @@ export default function WishlistCard({
           </h3>
         </a>
 
-        {/* Price */}
         <p className="wishlist-card-price">
           {product_price
             ? `$${Number(product_price).toFixed(2)}`
             : "Price unavailable"}
         </p>
 
-        {/* Action Buttons */}
         <div className="wishlist-card-actions">
 
-          {/* Add to Cart */}
           <button
             className="btn btn-dark"
-            onClick={() =>
-              onAddToCart(variant_id || product_id)
-            }
+            onClick={() => onAddToCart(variant_id || product_id)}
             style={{ fontSize: "0.85rem", padding: "8px 16px" }}
           >
             🛒 Add to Cart
           </button>
 
-          {/* View Product */}
-          <a
+          
             href={product_url || "#"}
             target="_blank"
             rel="noopener noreferrer"
@@ -103,7 +96,6 @@ export default function WishlistCard({
             👁️ View
           </a>
 
-          {/* Remove */}
           <button
             className="btn btn-outline"
             onClick={() => onRemove(product_id)}
